@@ -37,7 +37,7 @@ public class AutonomousModule implements RobotModule {
     }
 
     //For autonomous we just do timed states
-    //Each state incriments to the next state (timed)
+    //Each state increments to the next state (timed)
     //This way we can be sure of the timing of autonomous
     public void updateTick(int mode) {
         if (mode == 1 && autonomousEnabled) {

@@ -6,7 +6,7 @@ import org.usfirst.frc1148.interfaces.RobotModule;
 
 public class CatapultModule implements RobotModule {
     Robot robot;
-    Solenoid sol;
+    Solenoid sol, sol2;
 
     /*
      * States List
@@ -24,6 +24,9 @@ public class CatapultModule implements RobotModule {
 
     public CatapultModule(Robot robot) {
         this.robot = robot;
+        //sol = new Solenoid (3,2); //module number, channel. Make sure right ports!
+        //sol2 = new Solenoid (3,3);
+        
     }
 
     public void initModule() {
@@ -54,17 +57,19 @@ public class CatapultModule implements RobotModule {
         case 0:
             //do nothing
             break;
-        case 1:
+        case 1:      
             //Loading, send the signal to the solenoid
             if(sol.get())
                 state=3;
             sol.set(true);
+            sol2.set(true);
             break;
         case 2:
             //Unloading, send the signal to the solenoid
             if(!sol.get())
                 state = 0;
             sol.set(false);
+            sol2.set(false);
             break;
         case 3:
             //Loaded, do nothing

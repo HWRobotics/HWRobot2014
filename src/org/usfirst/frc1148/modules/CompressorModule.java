@@ -26,21 +26,23 @@ public class CompressorModule implements RobotModule {
     public void initModule() {
         System.out.println("Compressor module initialized.");
         //Input 3 for the switch, 9 for the spike relay
-        comp = new Compressor(3, 9);
+        //comp = new Compressor(3, 9);
     }
 
     public void activateModule() {
         System.out.println("Compressor enabled!");
-        comp.start();
+        //comp.start();
     }
 
     public void deactivateModule() {
         System.out.println("Compressor shutdown.");
-        comp.stop();
+        //comp.stop();
     }
 
     public void updateTick(int mode) {
         //True if pressurized
+        if (true) return;
+        if (mode != 2) return;
         boolean currState = !comp.getPressureSwitchValue();
         if(currState != relayState) {
             relayState = currState;

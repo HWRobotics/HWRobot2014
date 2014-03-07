@@ -79,13 +79,13 @@ public class JoyStickInputModule implements RobotModule {
             isResetButtonPressed = false;
         }
 
-        if (drive.getRawButton(7) && !isRelativeTogglePressed) {
-            driver.ToggleRelative();
-            isRelativeTogglePressed = true;
-            System.out.println("toggled relative!");
-        } else if (!drive.getRawButton(7)) {
-            isRelativeTogglePressed = false;
-        }
+    //   if (drive.getRawButton(7) && !isRelativeTogglePressed) {
+      //      driver.ToggleRelative();
+     //       isRelativeTogglePressed = true;
+     //       System.out.println("toggled relative!");
+    //    } else if (!drive.getRawButton(7)) {
+     //       isRelativeTogglePressed = false;
+        
 
         //Here add your other features
         data.speed = Math.max(Math.abs(drive.getX()), Math.abs(drive.getY()));
