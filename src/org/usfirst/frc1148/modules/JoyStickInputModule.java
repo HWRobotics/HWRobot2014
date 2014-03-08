@@ -3,7 +3,7 @@ package org.usfirst.frc1148.modules;
 import org.usfirst.frc1148.Robot;
 import org.usfirst.frc1148.data.MoveData;
 import org.usfirst.frc1148.interfaces.RobotModule;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class JoyStickInputModule implements RobotModule {
@@ -15,6 +15,7 @@ public class JoyStickInputModule implements RobotModule {
     double driveX;
     double rotSpeed;
     boolean isResetButtonPressed = false;
+    
     boolean isRelativeTogglePressed = false;
 
     MoveData data;
@@ -22,6 +23,8 @@ public class JoyStickInputModule implements RobotModule {
     AutoDriveModule autoDrive;
     Robot robot;
     MotorTestModule motorTester;
+    Timer timer;
+    CatapultModule catapult;
 
     public JoyStickInputModule(Robot robot) {
         this.robot = robot;
@@ -33,6 +36,7 @@ public class JoyStickInputModule implements RobotModule {
         this.autoDrive = (AutoDriveModule)robot.GetModuleByName("autodrive");
         this.driver = (RobotDriver)robot.GetModuleByName("robotDriver");
         this.motorTester = (MotorTestModule)robot.GetModuleByName("testmotor");
+        this.catapult = (CatapultModule)robot.GetModuleByName("catapult");
         drive = new Joystick(1);
         secControl = new Joystick(2);
         thirdControl = new Joystick(3);
@@ -43,10 +47,12 @@ public class JoyStickInputModule implements RobotModule {
     {
         //SetMoveData on the driver to establish our dominance
         driver.setMoveData(data);
+        System.out.println("JoyStick activateModule activated!");
     }
 
     public void deactivateModule()
     {
+        System.out.println("JoyStick activateModule deactivated!");
     }
 
     public void updateTick(int mode) {
@@ -79,6 +85,7 @@ public class JoyStickInputModule implements RobotModule {
             isResetButtonPressed = false;
         }
 
+
     //   if (drive.getRawButton(7) && !isRelativeTogglePressed) {
       //      driver.ToggleRelative();
      //       isRelativeTogglePressed = true;
@@ -92,13 +99,22 @@ public class JoyStickInputModule implements RobotModule {
         data.angle = drive.getDirectionDegrees();
         data.rotationSpeed = rotSpeed;
 
-        //AUTO ORIENT
+        //AUTO ORIENT JMF TAKING OUT
+        /*
         if (drive.getRawButton(11)) {
             autoDrive.OrientTo(45);
         } else if (drive.getRawButton(12)) {
             autoDrive.OrientTo(360 - 45);
         } else {
             autoDrive.Disable();
+        }
+        * */
+        
+        // JMF CATAPULT
+        if (drive.getRawButton(11)) {
+            catapult.Load();
+        } else if (drive.getRawButton(9)) {
+            catapult.Launch();
         }
 
         //Test motor

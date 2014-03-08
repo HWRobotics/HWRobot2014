@@ -27,6 +27,11 @@ public class CompressorModule implements RobotModule {
         System.out.println("Compressor module initialized.");
         //Input 3 for the switch, 9 for the spike relay
         //comp = new Compressor(3, 9);
+        
+        
+        //JMF frank said he put the pressure sensor into 9
+        //class constructor: (int pressureSwitchChannel, int compressorRelayChannel)
+        comp = new Compressor(9, 1);
     }
 
     public void activateModule() {
@@ -41,8 +46,7 @@ public class CompressorModule implements RobotModule {
 
     public void updateTick(int mode) {
         //True if pressurized
-        if (true) return;
-        if (mode != 2) return;
+        //if (true) return;
         boolean currState = !comp.getPressureSwitchValue();
         if(currState != relayState) {
             relayState = currState;

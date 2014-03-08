@@ -5,6 +5,7 @@ import org.usfirst.frc1148.Robot;
 import org.usfirst.frc1148.data.MoveData;
 import org.usfirst.frc1148.interfaces.RobotModule;
 
+
 public class AutonomousModule implements RobotModule {
 
     RobotDriver driver;
@@ -15,25 +16,53 @@ public class AutonomousModule implements RobotModule {
     boolean autonomousEnabled = true;
     AutoDriveModule autoDrive;
     Robot robot;
+    float rotSpeed;
+    double driveY;
+    double driveX;
+    MoveData data;
+    MoveData oldData;
+
 
     public AutonomousModule(Robot robot) {
         this.robot = robot;
+        data = new MoveData();
+        
     }
 
     public void initModule() {
         timer = new Timer();
         secondTimer = new Timer();
         autoDrive = (AutoDriveModule)robot.GetModuleByName("autoDrive");
+        this.driver = (RobotDriver)robot.GetModuleByName("robotDriver");
     }
 
     public void activateModule() {
+        rotSpeed = 1;
+        driveY = 1;
+        driveX = 0;
+        System.out.println("Autonomous activated!");
+
     }
 
     public void deactivateModule() {
+        rotSpeed =0;
+        driveY=0;
+        driveX = 0;
+        System.out.println("Autonomous deactivated!");
+        
     }
 
     void SetAllowed(boolean aBoolean) {
         autonomousEnabled = aBoolean;
+        if (true)
+        {
+            //oldData=driver.getMoveData();
+            //driver.setMoveData(data);
+        }
+        else
+        {
+            //driver.setMoveData(oldData);
+        }
     }
 
     //For autonomous we just do timed states
@@ -49,8 +78,17 @@ public class AutonomousModule implements RobotModule {
                 timer.start();
                 state++;
                 break;
+            case 1:
+                moveData.speed = 0.25;
+                moveData.angle = 0;
+                driver.Relative();               
+                if (timer.get() > 2) {
+                    state++;
+                }
+                break;
             default: //If it finishes or there is no next state (failsafe)
-                autoDrive.Disable();
+                
+                //autoDrive.Disable();
                 moveData.speed = 0;
                 moveData.angle = 0;
                 driver.Relative();

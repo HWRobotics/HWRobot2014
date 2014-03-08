@@ -36,6 +36,7 @@ public class CatapultModule implements RobotModule {
 
     public void activateModule() {
         System.out.println("Catapult module activated!");
+        targetState = 3; /* Load */
     }
 
     public void deactivateModule() {
@@ -46,13 +47,29 @@ public class CatapultModule implements RobotModule {
     public void Launch()
     {
         targetState = 0;
+        System.out.println("LAUNCHING");
     }
 
     public void Load() {
         targetState = 3;
+        System.out.println("LOADING");
     }
 
     public void updateTick(int mode) {
+        
+        // JMF -- all we need is to switch the solenoid from load to launch
+        
+        if (targetState == 0) {
+            /* Launch */
+            
+        } else {
+            /* Load */
+            
+        }
+        
+        if (true) return;
+        // JMF -- The original state machine is below but I think too complex for this.
+        
         switch (state) {
         case 0:
             //do nothing

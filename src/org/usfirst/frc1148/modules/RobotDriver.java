@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Talon;
 import org.usfirst.frc1148.Robot;
 import org.usfirst.frc1148.data.MoveData;
 import org.usfirst.frc1148.interfaces.RobotModule;
+import edu.wpi.first.wpilibj.Timer;
 
 public class RobotDriver implements RobotModule {
 
@@ -21,6 +22,7 @@ public class RobotDriver implements RobotModule {
     MoveData moveData;
     RobotDrive driver;
     boolean enableMotors = true;
+    Timer timer;
 
     public RobotDriver(Robot robot) {
         this.robot = robot;
@@ -43,7 +45,7 @@ public class RobotDriver implements RobotModule {
         backLeft = new Talon(3);
         driver = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
         driver.setInvertedMotor(MotorType.kFrontRight, true);
-        driver.setInvertedMotor(MotorType.kRearRight, true);
+        driver.setInvertedMotor(MotorType.kRearLeft, true);
         System.out.println("Robot driver module initialized.");
     }
 
