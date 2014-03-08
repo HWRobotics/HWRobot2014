@@ -24,13 +24,14 @@ public class CatapultModule implements RobotModule {
 
     public CatapultModule(Robot robot) {
         this.robot = robot;
-        //sol = new Solenoid (3,2); //module number, channel. Make sure right ports!
-        //sol2 = new Solenoid (3,3);
+        
         
     }
 
     public void initModule() {
         System.out.println("Initialzing catapult module!");
+        sol = new Solenoid (1); //channel. Make sure right ports!
+        sol2 = new Solenoid (2);
         System.out.println("Catapult module initialized.");
     }
 
@@ -61,10 +62,12 @@ public class CatapultModule implements RobotModule {
         
         if (targetState == 0) {
             /* Launch */
-            
+            sol.set(true);
+            sol2.set(false);
         } else {
             /* Load */
-            
+            sol.set(false);
+            sol2.set(true);
         }
         
         if (true) return;

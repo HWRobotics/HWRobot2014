@@ -31,17 +31,17 @@ public class CompressorModule implements RobotModule {
         
         //JMF frank said he put the pressure sensor into 9
         //class constructor: (int pressureSwitchChannel, int compressorRelayChannel)
-        comp = new Compressor(9, 1);
+        comp = new Compressor(10, 5);
     }
 
     public void activateModule() {
         System.out.println("Compressor enabled!");
-        //comp.start();
+        comp.start();
     }
 
     public void deactivateModule() {
         System.out.println("Compressor shutdown.");
-        //comp.stop();
+        comp.stop();
     }
 
     public void updateTick(int mode) {
