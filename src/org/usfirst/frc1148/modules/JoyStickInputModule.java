@@ -62,7 +62,7 @@ public class JoyStickInputModule implements RobotModule {
         rotSpeed = drive.getZ()/1.5;
         if (drive.getRawButton(2)) {
             rotSpeed = 0;
-        }
+        } 
         //exponential
         rotSpeed = rotSpeed * Math.abs(rotSpeed);
         driveY = drive.getY() * Math.abs(drive.getY());
@@ -96,13 +96,11 @@ public class JoyStickInputModule implements RobotModule {
        if (drive.getRawButton(7) && !isRelativeTogglePressed) {
             driver.ToggleRelative();
             isRelativeTogglePressed = true;
-            System.out.println("toggled relative!");
-        } else if (!drive.getRawButton(7)) {
-            isRelativeTogglePressed = false;
+            System.out.println("toggled false;
         */
 
         //Here add your other features
-        data.speed = Math.max(Math.abs(drive.getX()), Math.abs(drive.getY()));
+        data.speed = Math.max(Math.abs(drive.getX()), Math.abs(drive.getY())); 
         data.angle = drive.getDirectionDegrees();
         data.rotationSpeed = rotSpeed;
 

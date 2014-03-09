@@ -41,11 +41,11 @@ public class RobotDriver implements RobotModule {
         frontLeft = new Talon(6); //connected to 6
         frontRight = new Talon(7); //connected to 7
         robotGyro = new Gyro(1);
-        backRight = new Talon(1);
-        backLeft = new Talon(3);
+        backRight = new Talon(3);
+        backLeft = new Talon(1);
         driver = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
         driver.setInvertedMotor(MotorType.kFrontRight, true);
-        driver.setInvertedMotor(MotorType.kRearLeft, true);
+        driver.setInvertedMotor(MotorType.kRearRight, true);
         System.out.println("Robot driver module initialized.");
     }
 
@@ -100,7 +100,54 @@ public class RobotDriver implements RobotModule {
             }
 
             double rotSpeed = moveData.rotationSpeed;
-            driver.mecanumDrive_Polar(speed, moveAngle, rotSpeed);
+            /*
+            moveAngle = moveAngle / 180 * Math.PI; //Convert to Radians for method use
+            
+            
+            
+           double frontLefts = speed*Math.sin(moveAngle+(Math.PI/4))+rotSpeed;
+           double frontRights = speed*Math.sin(moveAngle+(Math.PI/4))-rotSpeed;
+           double backLefts = frontRights;
+           double backRights = frontLefts;
+           
+           double frontLefts = speed *4/3* Math.sin(moveAngle + (Math.PI / 4)) + rotSpeed;
+           double frontRights = (speed*4/3 * Math.cos(moveAngle + (Math.PI / 4)) - rotSpeed);
+              double backLefts = speed *4/3* Math.cos(moveAngle + (Math.PI / 4)) + rotSpeed;
+           double backRights = (speed *4/3* Math.sin(moveAngle + (Math.PI / 4)) - rotSpeed);
+        
+           double[] values = new double[]{frontLefts, frontRights, backLefts, backRights};
+           double max = Math.abs(values[0]);
+           for (int i = 1; i < 4; i++) {
+               if (Math.abs(values[i]) > max) {
+                   max = Math.abs(values[i]);
+               }
+           }
+           if (max > 1) {
+               frontLefts /= max;
+               frontRights /= max;
+               backLefts /= max;
+               backRights /= max;
+           }else if(max < speed){
+            
+            
+           }
+           //*/
+
+           /* V2
+		
+            
+
+           //apply motor movement
+           if (enableMotors) {
+               frontLeft.set(frontLefts);
+               frontRight.set(frontRights);
+               backLeft.set(backLefts);
+               backRight.set(backRights);
+           } else {
+               System.out.println("FL: "+frontLefts+" FR: "+frontRights+" BL: "+backLefts+" BR: "+backRights);
+               System.out.println("IS: "+moveData.speed+" ANG: "+moveData.angle + " ROT: "+moveData.rotationSpeed);
+           } */
+           driver.mecanumDrive_Polar(speed, moveAngle, rotSpeed);       
         } else {
             driver.stopMotor();
         }
