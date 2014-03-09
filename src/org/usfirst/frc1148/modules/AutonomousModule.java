@@ -40,6 +40,7 @@ public class AutonomousModule implements RobotModule {
         rotSpeed = 1;
         driveY = 1;
         driveX = 0;
+        state = 0;
         System.out.println("Autonomous activated!");
 
     }
@@ -71,7 +72,7 @@ public class AutonomousModule implements RobotModule {
     public void updateTick(int mode) {
         if (mode == 1 && autonomousEnabled) {
             MoveData moveData = driver.getMoveData();
-            driver.Relative();
+            driver.NotRelative();
             switch (state) {
             case 0: //startup 0 seconds
                 timer.reset();
@@ -79,10 +80,10 @@ public class AutonomousModule implements RobotModule {
                 state++;
                 break;
             case 1:
-                moveData.speed = 0.25;
+                moveData.speed = 0.5;
                 moveData.angle = 0;
-                driver.Relative();               
-                if (timer.get() > 2) {
+                //driver.Relative();               
+                if (timer.get() > 3) {
                     state++;
                 }
                 break;
@@ -91,7 +92,7 @@ public class AutonomousModule implements RobotModule {
                 //autoDrive.Disable();
                 moveData.speed = 0;
                 moveData.angle = 0;
-                driver.Relative();
+                //driver.Relative();
                 break;
             }
         }

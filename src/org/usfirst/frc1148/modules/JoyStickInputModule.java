@@ -85,20 +85,45 @@ public class JoyStickInputModule implements RobotModule {
             isResetButtonPressed = false;
         }
 
+        //driver.NotRelative();
 
-    //   if (drive.getRawButton(7) && !isRelativeTogglePressed) {
-      //      driver.ToggleRelative();
-     //       isRelativeTogglePressed = true;
-     //       System.out.println("toggled relative!");
-    //    } else if (!drive.getRawButton(7)) {
-     //       isRelativeTogglePressed = false;
-        
+        if (drive.getRawButton(7)) {
+            driver.Relative();
+        } else {
+            driver.NotRelative();
+        }
+        /*
+       if (drive.getRawButton(7) && !isRelativeTogglePressed) {
+            driver.ToggleRelative();
+            isRelativeTogglePressed = true;
+            System.out.println("toggled relative!");
+        } else if (!drive.getRawButton(7)) {
+            isRelativeTogglePressed = false;
+        */
 
         //Here add your other features
         data.speed = Math.max(Math.abs(drive.getX()), Math.abs(drive.getY()));
         data.angle = drive.getDirectionDegrees();
         data.rotationSpeed = rotSpeed;
 
+        if (drive.getRawButton(5)) {
+            data.speed = 1;
+            data.angle = 0;
+            data.rotationSpeed = 0;
+        } else if (drive.getRawButton(6)) {
+            data.speed = 1;
+            data.angle = 180;
+            data.rotationSpeed = 0;
+        } else if (drive.getRawButton(3)) {
+            data.speed = 1;
+            data.angle = 270;
+            data.rotationSpeed = 0;
+        } else if (drive.getRawButton(4)) {
+            data.speed = 1;
+            data.angle = 90;
+            data.rotationSpeed = 0;
+        }
+        
         //AUTO ORIENT JMF TAKING OUT
         /*
         if (drive.getRawButton(11)) {
@@ -109,6 +134,8 @@ public class JoyStickInputModule implements RobotModule {
             autoDrive.Disable();
         }
         * */
+        
+        
         
         // JMF CATAPULT
         if (drive.getRawButton(11)) {

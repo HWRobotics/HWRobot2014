@@ -62,12 +62,12 @@ public class CatapultModule implements RobotModule {
         
         if (targetState == 0) {
             /* Launch */
-            sol.set(true);
-            sol2.set(false);
+            sol2.set(true);
+            sol.set(false);
         } else {
             /* Load */
-            sol.set(false);
-            sol2.set(true);
+            sol2.set(false);
+            sol.set(true);
         }
         
         if (true) return;
