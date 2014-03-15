@@ -40,9 +40,9 @@ public class Robot extends IterativeRobot {
         modules.put("joystick", new JoyStickInputModule(this));
         modules.put("autonomous", new AutonomousModule(this));
         modules.put("testmotor", new MotorTestModule(this));
-        //modules.put("dashboard", new DashboardModule(this));
+        //modules.put("dashboard", new DashboardModule(this)); DASHBOARD IS DISABLED BRO
         modules.put("compressor", new CompressorModule(this));
-        modules.put("catapult", new CatapultModule(this));
+        //modules.put("catapult", new CatapultModule(this)); CATAPULT IS DISABLED BRO
         
         System.out.println("Robot construction done...");
         

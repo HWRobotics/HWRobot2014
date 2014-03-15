@@ -24,7 +24,7 @@ public class JoyStickInputModule implements RobotModule {
     Robot robot;
     MotorTestModule motorTester;
     Timer timer;
-    CatapultModule catapult;
+    //CatapultModule catapult;
 
     public JoyStickInputModule(Robot robot) {
         this.robot = robot;
@@ -36,7 +36,7 @@ public class JoyStickInputModule implements RobotModule {
         this.autoDrive = (AutoDriveModule)robot.GetModuleByName("autodrive");
         this.driver = (RobotDriver)robot.GetModuleByName("robotDriver");
         this.motorTester = (MotorTestModule)robot.GetModuleByName("testmotor");
-        this.catapult = (CatapultModule)robot.GetModuleByName("catapult");
+        //this.catapult = (CatapultModule)robot.GetModuleByName("catapult");
         drive = new Joystick(1);
         secControl = new Joystick(2);
         thirdControl = new Joystick(3);
@@ -135,12 +135,13 @@ public class JoyStickInputModule implements RobotModule {
         
         
         
-        // JMF CATAPULT
+        /*
         if (drive.getRawButton(11)) {
             catapult.Load();
         } else if (drive.getRawButton(9)) {
             catapult.Launch();
         }
+        */
 
         //Test motor
         motorTester.SetSpeed(secControl.getTrigger() ? secControl.getY() : 0);

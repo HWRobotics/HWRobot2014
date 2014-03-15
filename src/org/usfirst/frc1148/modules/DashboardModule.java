@@ -10,6 +10,7 @@ import org.usfirst.frc1148.interfaces.RobotModule;
 
 /**
  * Currently disabled and not working properly
+ * REPEAT: DISABLED. NOTHING IN THIS CLASS DOES ANYTHING.
  * @author HW Robotics
  */
 public class DashboardModule implements RobotModule {
@@ -57,10 +58,6 @@ public class DashboardModule implements RobotModule {
             SmartDashboard.putBoolean("resetGyro", false);
             driver.resetGyro();
         }
-
-        //Set autonomous modes
-        autonomous.SetAllowed(SmartDashboard.getBoolean("autonomousEnabled", true));
-        SmartDashboard.putNumber("autonomousState", autonomous.GetState());
 
         //Autodrive
         SmartDashboard.putBoolean("autoOrientEnabled", auto.AutoOrientEnabled());

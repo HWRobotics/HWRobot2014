@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import org.usfirst.frc1148.Robot;
 import org.usfirst.frc1148.data.MoveData;
 import org.usfirst.frc1148.interfaces.RobotModule;
-import edu.wpi.first.wpilibj.Timer;
 
 public class RobotDriver implements RobotModule {
 
@@ -100,53 +100,6 @@ public class RobotDriver implements RobotModule {
             }
 
             double rotSpeed = moveData.rotationSpeed;
-            /*
-            moveAngle = moveAngle / 180 * Math.PI; //Convert to Radians for method use
-            
-            
-            
-           double frontLefts = speed*Math.sin(moveAngle+(Math.PI/4))+rotSpeed;
-           double frontRights = speed*Math.sin(moveAngle+(Math.PI/4))-rotSpeed;
-           double backLefts = frontRights;
-           double backRights = frontLefts;
-           
-           double frontLefts = speed *4/3* Math.sin(moveAngle + (Math.PI / 4)) + rotSpeed;
-           double frontRights = (speed*4/3 * Math.cos(moveAngle + (Math.PI / 4)) - rotSpeed);
-              double backLefts = speed *4/3* Math.cos(moveAngle + (Math.PI / 4)) + rotSpeed;
-           double backRights = (speed *4/3* Math.sin(moveAngle + (Math.PI / 4)) - rotSpeed);
-        
-           double[] values = new double[]{frontLefts, frontRights, backLefts, backRights};
-           double max = Math.abs(values[0]);
-           for (int i = 1; i < 4; i++) {
-               if (Math.abs(values[i]) > max) {
-                   max = Math.abs(values[i]);
-               }
-           }
-           if (max > 1) {
-               frontLefts /= max;
-               frontRights /= max;
-               backLefts /= max;
-               backRights /= max;
-           }else if(max < speed){
-            
-            
-           }
-           //*/
-
-           /* V2
-		
-            
-
-           //apply motor movement
-           if (enableMotors) {
-               frontLeft.set(frontLefts);
-               frontRight.set(frontRights);
-               backLeft.set(backLefts);
-               backRight.set(backRights);
-           } else {
-               System.out.println("FL: "+frontLefts+" FR: "+frontRights+" BL: "+backLefts+" BR: "+backRights);
-               System.out.println("IS: "+moveData.speed+" ANG: "+moveData.angle + " ROT: "+moveData.rotationSpeed);
-           } */
            driver.mecanumDrive_Polar(speed, moveAngle, rotSpeed);       
         } else {
             driver.stopMotor();

@@ -24,8 +24,6 @@ public class CatapultModule implements RobotModule {
 
     public CatapultModule(Robot robot) {
         this.robot = robot;
-        
-        
     }
 
     public void initModule() {
